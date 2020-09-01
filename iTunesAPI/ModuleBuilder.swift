@@ -17,6 +17,7 @@ protocol ViewProtocol: class {
 protocol PresenterProtocol: class {
   var view: ViewProtocol? { get }
   init(view: ViewProtocol)
+  func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void)
 }
 
 class ModuleBuilder: Builder {
