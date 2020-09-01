@@ -10,10 +10,8 @@ import Foundation
 class MainPresenter: PresenterProtocol {
   weak var view: ViewProtocol?
 
-
-  required init(view: ViewProtocol){
+  required init(view: ViewProtocol) {
     self.view = view
   }
 
-  
 }
