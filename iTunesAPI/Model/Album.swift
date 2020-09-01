@@ -12,15 +12,17 @@ struct Album: Decodable {
   let artist: String?
   let albumName: String?
   let albumId: Int?
-  let artistImageUrl: String?
+  let imageUrl: String?
   let trackCount: Int?
+  let releaseDate: String?
 
  private enum CodingKeys: String, CodingKey {
     case artist = "artistName"
     case albumName = "collectionName"
     case albumId = "collectionId"
-    case artistImageUrl = "collectionViewUrl"
+    case imageUrl = "artworkUrl100"
     case trackCount
+    case releaseDate
   }
 
   init(from decoder: Decoder) throws {
@@ -28,7 +30,8 @@ struct Album: Decodable {
     artist = try container.decode(String.self, forKey: .artist)
     albumName = try container.decode(String.self, forKey: .albumName)
     albumId = try container.decode(Int.self, forKey: .albumId)
-    artistImageUrl = try container.decode(String.self, forKey: .artistImageUrl)
+    imageUrl = try container.decode(String.self, forKey: .imageUrl)
     trackCount = try container.decode(Int.self, forKey: .trackCount)
+    releaseDate = try container.decode(String.self, forKey: .releaseDate)
   }
 }

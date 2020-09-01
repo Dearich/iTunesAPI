@@ -11,15 +11,6 @@ protocol Builder {
     static func createMain() -> UIViewController
 }
 
-protocol ViewProtocol: class {
-  var presenter: PresenterProtocol? { get }
-}
-protocol PresenterProtocol: class {
-  var view: ViewProtocol? { get }
-  init(view: ViewProtocol)
-  func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void)
-}
-
 class ModuleBuilder: Builder {
     static func createMain() -> UIViewController {
         let view = MainViewController()

@@ -10,7 +10,7 @@ import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
 
-  var album: Album?
+  var presenter: MainCellPresenter!
 
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var albumNameLabel: UILabel!
@@ -22,10 +22,8 @@ class MainCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
     imageView.layer.masksToBounds = true
     imageView.layer.cornerRadius = 5
-  }
-
-  func setupCell() {
-    guard let album = album  else { return }
+    presenter = MainCellPresenter(view: self)
+//   
 
   }
 
@@ -35,18 +33,16 @@ class MainCollectionViewCell: UICollectionViewCell {
   }
 
   override func draw(_ rect: CGRect) {
-     guard let context = UIGraphicsGetCurrentContext() else {
-       return
-     }
+    guard let context = UIGraphicsGetCurrentContext() else { return }
 
-     let y = bounds.maxY - 0.5
-     let minX = bounds.minX + 8
-     let maxX = bounds.maxX
+    let y = bounds.maxY - 0.5
+    let minX = bounds.minX + 8
+    let maxX = bounds.maxX
 
-     context.setStrokeColor(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1).cgColor)
-     context.setLineWidth(1.0)
-     context.move(to: CGPoint(x: minX, y: y))
-     context.addLine(to: CGPoint(x: maxX, y: y))
-     context.strokePath()
-   }
+    context.setStrokeColor(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1).cgColor)
+    context.setLineWidth(2.0)
+    context.move(to: CGPoint(x: minX, y: y))
+    context.addLine(to: CGPoint(x: maxX, y: y))
+    context.strokePath()
+  }
 }

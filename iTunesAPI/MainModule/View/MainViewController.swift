@@ -10,63 +10,57 @@ import UIKit
 
 class MainViewController: UIViewController, ViewProtocol {
 
-   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var collectionView: UICollectionView!
 
-  private let reuseIdentifier = "MainCell"
   let seachBar = UISearchController(searchResultsController: nil)
   var albums: [Album]? {
     didSet {
       collectionView.reloadData()
     }
   }
+  var histiry = [String]()
+
   var isSearchBarEmpty: Bool {
     return seachBar.searchBar.text?.isEmpty ?? true
+  }
+
+  var isSearching: Bool {
+    return seachBar.isActive && !isSearchBarEmpty
   }
   var presenter: PresenterProtocol?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    albums = [Album]()
-    let nib = UINib(nibName: "MainCollectionViewCell", bundle: nil)
-    collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-    collectionView.dataSource = self
-    collectionView.delegate = self
     self.title = "Search"
+    presenter?.setupCollectionView()
     seachBar.searchResultsUpdater = self
     seachBar.obscuresBackgroundDuringPresentation = false
     seachBar.searchBar.placeholder = "Artists"
     navigationItem.searchController = seachBar
+    navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.hidesSearchBarWhenScrolling = false
     definesPresentationContext = true
+    seachBar.searchBar.delegate = self
     
   }
 }
 
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return albums?.count ?? 0
-  }
-
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier,
-                                                        for: indexPath) as? MainCollectionViewCell
-    else { return UICollectionViewCell() }
-
-    return cell
-  }
-
-}
-
-extension MainViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-      return CGSize(width: collectionView.bounds.width * 0.95, height: 105)
-    }
-}
-
-extension MainViewController: UISearchResultsUpdating {
+extension MainViewController: UISearchResultsUpdating, UISearchBarDelegate {
   func updateSearchResults(for searchController: UISearchController) {
-//TODO
+  }
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+    guard let request = searchBar.text else { return }
+    presenter?.getAlbums(request, complition: { [weak self] (albums) in
+      self?.albums = albums
+      self?.histiry.append(request)
+    })
+  }
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    albums?.removeAll()
+  }
+  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    albums?.removeAll()
   }
 }

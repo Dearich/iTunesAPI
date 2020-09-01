@@ -9,21 +9,40 @@
 import UIKit
 class MainPresenter: PresenterProtocol {
   weak var view: ViewProtocol?
+  private let reuseIdentifier = "MainCell"
+  private let historyReuseIdentifier = "HistoryCell"
+  private let historyHeader = "Header"
 
   required init(view: ViewProtocol) {
     self.view = view
   }
 
   func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void) {
-    NetworkLayer.shared.getAlbums(searchText) { [weak self] (result) in
-      switch result {
-      case .success(let artist):
-        complition(artist.albums)
+    NetworkLayer.shared.getAlbums(searchText.lowercased()) { [weak self] (result) in
+      DispatchQueue.main.async {
+        switch result {
 
-      case .failure(let error):
-        self?.setAlert(title: "Error", message: "\(error.localizedDescription)")
+        case .success(let artist):
+          complition(artist.albums)
+
+        case .failure(let error):
+          self?.setAlert(title: "Error", message: "\(error.localizedDescription)")
+        }
       }
     }
+  }
+
+  func setupCollectionView() {
+    guard let view = view as? MainViewController else { return }
+    view.albums = [Album]()
+    view.collectionView.dataSource = view
+    view.collectionView.delegate = view
+    let nib = UINib(nibName: "MainCollectionViewCell", bundle: nil)
+    view.collectionView.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+    let nib2 = UINib(nibName: "HistoryCollectionViewCell", bundle: nil)
+    view.collectionView.register(nib2, forCellWithReuseIdentifier: historyReuseIdentifier)
+    let nib3 = UINib(nibName: "HistoryHeader", bundle: nil)
+    view.collectionView.register(nib3, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: historyHeader)
   }
 }
 
