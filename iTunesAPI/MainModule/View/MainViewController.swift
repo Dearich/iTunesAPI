@@ -9,33 +9,37 @@
 import UIKit
 
 class MainViewController: UIViewController, ViewProtocol {
-
+  
   @IBOutlet weak var collectionView: UICollectionView!
-
+  @IBOutlet weak var spinner: UIActivityIndicatorView!
+  @IBOutlet weak var loadingLabel: UILabel!
+  
   let seachBar = UISearchController(searchResultsController: nil)
   var albums: [Album]? {
     didSet {
       collectionView.reloadData()
     }
   }
-  var histiry = [String]()
-
+  var history = [String]()
+  
   var isSearchBarEmpty: Bool {
     return seachBar.searchBar.text?.isEmpty ?? true
   }
-
-  var isSearching: Bool {
-    return seachBar.isActive && !isSearchBarEmpty
-  }
+  
+  //  var isSearching: Bool {
+  //    return seachBar.isActive && !isSearchBarEmpty
+  //  }
   var presenter: PresenterProtocol?
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.title = "Search"
+    spinner.isHidden = true
+    loadingLabel.isHidden = true
     presenter?.setupCollectionView()
     seachBar.searchResultsUpdater = self
     seachBar.obscuresBackgroundDuringPresentation = false
-    seachBar.searchBar.placeholder = "Artists"
+    seachBar.searchBar.placeholder = "Artists, albums"
     navigationItem.searchController = seachBar
     navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.hidesSearchBarWhenScrolling = false
@@ -48,13 +52,13 @@ class MainViewController: UIViewController, ViewProtocol {
 extension MainViewController: UISearchResultsUpdating, UISearchBarDelegate {
   func updateSearchResults(for searchController: UISearchController) {
   }
-
+  
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     guard let request = searchBar.text else { return }
     presenter?.getAlbums(request, complition: { [weak self] (albums) in
       self?.albums = albums
-      self?.histiry.append(request)
+      self?.history.append(request)
     })
   }
   func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

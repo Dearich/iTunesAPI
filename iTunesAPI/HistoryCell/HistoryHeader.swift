@@ -8,11 +8,15 @@
 
 import UIKit
 
+protocol HistoryHeaderProtocol: class {
+  func clearHistory()
+}
+
 class HistoryHeader: UICollectionReusableView {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+  weak var historyHeaderDelegate: HistoryHeaderProtocol?
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
 }

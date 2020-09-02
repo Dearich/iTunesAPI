@@ -18,15 +18,30 @@ class MainPresenter: PresenterProtocol {
   }
 
   func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void) {
-    NetworkLayer.shared.getAlbums(searchText.lowercased()) { [weak self] (result) in
-      DispatchQueue.main.async {
-        switch result {
+    guard let mainView = view as? MainViewController else { return }
+    mainView.spinner.isHidden = false
+    mainView.spinner.startAnimating()
+    mainView.loadingLabel.isHidden = false
+    let backgroundQueue = DispatchQueue(label: "ru.azizbek.fetchAlbum", qos: .userInitiated, attributes: .concurrent)
+    backgroundQueue.async {
+      NetworkLayer.shared.getAlbums(searchText.lowercased()) { [weak self] (result) in
+        DispatchQueue.main.async {
+          switch result {
 
-        case .success(let artist):
-          complition(artist.albums)
+          case .success(let artist):
+            if artist.albums.isEmpty {
+              self?.setAlert(title: "Empty response", message: "try to find something else")
+            } else {
+              complition(artist.albums)
+            }
+          case .failure(let error):
+            print(error.localizedDescription)
+            self?.setAlert(title: "Error", message: error.localizedDescription)
+          }
+          mainView.spinner.isHidden = true
+          mainView.spinner.stopAnimating()
+          mainView.loadingLabel.isHidden = true
 
-        case .failure(let error):
-          self?.setAlert(title: "Error", message: "\(error.localizedDescription)")
         }
       }
     }

@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, HistoryHeaderProtocol{
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    if isSearching {
-      return albums?.count ?? 0
+    if !isSearchBarEmpty {
+      return albums?.count ?? history.count
     } else {
-      return histiry.count
+      return history.count
     }
   }
 
@@ -24,7 +24,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: historyId,
                                                           for: indexPath) as? HistoryCollectionViewCell
         else { return UICollectionViewCell() }
-      cell.artistLabel.text = histiry[indexPath.row]
+      cell.artistLabel.text = history[indexPath.row]
       return cell
 
     } else {
@@ -42,23 +42,43 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
   }
 
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell {
+      //TODO
+    } else if let cell = collectionView.cellForItem(at: indexPath) as? HistoryCollectionViewCell {
+      UIView.animate(withDuration: 0.5) {
+        cell.contentView.backgroundColor = .systemGray6
+        cell.contentView.backgroundColor = .clear
+      }
+      seachBar.becomeFirstResponder()
+      seachBar.searchBar.searchTextField.becomeFirstResponder()
+      seachBar.searchBar.searchTextField.text = history[indexPath.row]
+    }
+  }
+
   func collectionView(_ collectionView: UICollectionView,
                       viewForSupplementaryElementOfKind kind: String,
                       at indexPath: IndexPath) -> UICollectionReusableView {
 
     if (kind == UICollectionView.elementKindSectionHeader) {
-      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
-
+      let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: "Header",
+                                                                             for: indexPath)
       return headerView
     }
     return UICollectionReusableView()
+  }
+  func clearHistory() {
+    //TODO Core Data remove all
+    history.removeAll()
+    collectionView.reloadData()
   }
 
   func collectionView(_ collectionView: UICollectionView,
                       layout collectionViewLayout: UICollectionViewLayout,
                       referenceSizeForHeaderInSection section: Int) -> CGSize {
 
-    if let isEmpty = albums?.isEmpty, isEmpty {
+    if isSearchBarEmpty && !history.isEmpty {
       return CGSize(width: collectionView.frame.width, height: 50.0)
     }
     return CGSize.zero

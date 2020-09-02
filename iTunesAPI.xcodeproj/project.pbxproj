@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1554505425003BEF005CB778 /* CheckInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1554505325003BEF005CB778 /* CheckInternet.swift */; };
 		155CDE3924FE31D700919C82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CDE3824FE31D700919C82 /* AppDelegate.swift */; };
 		155CDE3B24FE31D700919C82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CDE3A24FE31D700919C82 /* SceneDelegate.swift */; };
 		155CDE4224FE31DD00919C82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 155CDE4124FE31DD00919C82 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1554505325003BEF005CB778 /* CheckInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternet.swift; sourceTree = "<group>"; };
 		155CDE3524FE31D700919C82 /* iTunesAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		155CDE3824FE31D700919C82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		155CDE3A24FE31D700919C82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1554505225003BC2005CB778 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				159DD48E24FEABB100537554 /* ImageService */,
+				15AF51B724FE7D3200DA6422 /* NetworkLayer */,
+				1554505325003BEF005CB778 /* CheckInternet.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		155CDE2C24FE31D600919C82 = {
 			isa = PBXGroup;
 			children = (
@@ -116,8 +128,7 @@
 				155CDE5B24FE353000919C82 /* MainModule */,
 				155CDE6724FE502400919C82 /* CollectionViewCellModule */,
 				159DD49A24FEE7EE00537554 /* HistoryCell */,
-				159DD48E24FEABB100537554 /* ImageService */,
-				15AF51B724FE7D3200DA6422 /* NetworkLayer */,
+				1554505225003BC2005CB778 /* Services */,
 				159DD49324FEB5C200537554 /* Protocols */,
 				155CDE5A24FE322800919C82 /* Supporting Files */,
 			);
@@ -357,6 +368,7 @@
 				159DD49224FEB1E900537554 /* MainCellPresenter.swift in Sources */,
 				155CDE6A24FE505800919C82 /* MainCollectionViewCell.swift in Sources */,
 				159DD49724FEB5FB00537554 /* ViewProtocol.swift in Sources */,
+				1554505425003BEF005CB778 /* CheckInternet.swift in Sources */,
 				159DD49024FEABD800537554 /* ImageService.swift in Sources */,
 				15AF51BB24FE81B500DA6422 /* Artist.swift in Sources */,
 				155CDE5F24FE356900919C82 /* MainViewController.swift in Sources */,

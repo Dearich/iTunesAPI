@@ -12,7 +12,7 @@ struct Artist: Decodable {
   enum CodingKeys:String, CodingKey {
     case albums = "results"
   }
-
+  
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     albums = try container.decode([Album].self, forKey: .albums)

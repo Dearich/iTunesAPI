@@ -15,8 +15,8 @@ struct Album: Decodable {
   let imageUrl: String?
   let trackCount: Int?
   let releaseDate: String?
-
- private enum CodingKeys: String, CodingKey {
+  
+  private enum CodingKeys: String, CodingKey {
     case artist = "artistName"
     case albumName = "collectionName"
     case albumId = "collectionId"
@@ -24,7 +24,7 @@ struct Album: Decodable {
     case trackCount
     case releaseDate
   }
-
+  
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     artist = try container.decode(String.self, forKey: .artist)

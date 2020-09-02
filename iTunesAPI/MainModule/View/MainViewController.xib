@@ -10,6 +10,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="iTunesAPI" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="JEc-7L-dwi" id="ZcG-LM-auj"/>
+                <outlet property="loadingLabel" destination="Z9N-nE-J3c" id="Gg5-dk-uws"/>
+                <outlet property="spinner" destination="0q0-0Z-Ifr" id="RFc-fl-AlM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -28,16 +30,33 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0q0-0Z-Ifr">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9N-nE-J3c">
+                    <rect key="frame" x="20" y="474" width="374" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="23W-12-jnr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="Z9N-nE-J3c" firstAttribute="top" secondItem="0q0-0Z-Ifr" secondAttribute="bottom" constant="7.5" id="4J2-oU-FeD"/>
                 <constraint firstAttribute="trailing" secondItem="JEc-7L-dwi" secondAttribute="trailing" id="9Vm-h4-cWk"/>
                 <constraint firstItem="JEc-7L-dwi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UdT-BW-3k2"/>
+                <constraint firstItem="Z9N-nE-J3c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Wc1-89-lYn"/>
+                <constraint firstItem="0q0-0Z-Ifr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="b4G-8g-4A3"/>
+                <constraint firstItem="0q0-0Z-Ifr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cNf-D7-k1P"/>
                 <constraint firstItem="JEc-7L-dwi" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eSw-qz-QX4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="JEc-7L-dwi" secondAttribute="bottom" id="ujX-mZ-DvM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z9N-nE-J3c" secondAttribute="trailing" constant="20" id="vQk-Xa-Imv"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="129"/>
+            <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
         </view>
     </objects>
 </document>
