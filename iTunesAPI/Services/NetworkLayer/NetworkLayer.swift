@@ -9,7 +9,9 @@
 import UIKit
 
 class NetworkLayer {
+
   static let shared = NetworkLayer()
+  private let jsonDecoder = JSONDecoder()
   
   // MARK: - API Calls
   
@@ -19,7 +21,7 @@ class NetworkLayer {
     guard var components = URLComponents(string: "https://itunes.apple.com/search") else { return }
     components.queryItems = [URLQueryItem(name: "term", value: "\(query)"),
                              URLQueryItem(name: "entity", value: "album")]
-//                             URLQueryItem(name: "country", value: "RU")]
+    //                             URLQueryItem(name: "country", value: "RU")]
     let url = components.url!
     print("GET: \(url.absoluteString)")
     
@@ -27,10 +29,8 @@ class NetworkLayer {
     let task = URLSession.shared.dataTask(with: url) {[weak self] (data, _, error) in
       guard let self = self else { return }
       if let data = data {
-        print(data)
-        let jsonDecoder = JSONDecoder()
         do {
-          let artist = try jsonDecoder.decode(Artist.self, from: data)
+          let artist = try self.jsonDecoder.decode(Artist.self, from: data)
           NotificationCenter.default.addObserver(self, selector: #selector(self.downloadImageWithNotification(_:)),
                                                  name: NSNotification.Name(rawValue: "DownloadImage"),
                                                  object: nil)
@@ -42,6 +42,39 @@ class NetworkLayer {
       } else {
         print("API error: \(error!.localizedDescription)")
         completion(.failure(error!))
+      }
+    }
+    task.resume()
+  }
+
+  func getSongs(with id: Int, complition: @escaping (Result<[Song],Error>) -> Void) {
+    guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(id)&entity=song") else { return }
+    let task = URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
+      var songsResults = [Song]()
+      if let data = data {
+        do {
+          guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return }
+          if let jsonResults = json["results"] as? [AnyObject] {
+            for item in jsonResults {
+              if item["wrapperType"] as? String == "track" {
+                let song = Song()
+                song.artistName = item["artistName"] as? String ?? "nil"
+                song.previewURL = item["previewUrl"] as? String ?? "nil"
+                song.primaryGenreName = item["primaryGenreName"] as? String ?? "nil"
+                song.trackName = item["trackName"] as? String ?? "nil"
+                song.trackTimeMillis = item["trackTimeMillis"] as? Int ?? 00
+                songsResults.append(song)
+              }
+            }
+          }
+          complition(.success(songsResults))
+        } catch let error {
+          print("JSON error:\(error.localizedDescription)")
+          complition(.failure(error))
+        }
+      } else {
+        print("error:\(String(describing: error?.localizedDescription))")
+        complition(.failure(error!))
       }
     }
     task.resume()

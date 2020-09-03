@@ -12,18 +12,13 @@ extension MainViewController: UICollectionViewDelegate {
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-    if let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell {
-      let detailView = ModuleBuilder.createDetail()
-      detailView.presenter?.album = albums?[indexPath.row]
-      //      detailView.modalPresentationStyle = .popover
-      //      detailView.modalTransitionStyle = .coverVertical
-      //      present(detailView,animated: true)
-      navigationController?.pushViewController(detailView, animated: true)
-      
-    }
-    
     if let cell = collectionView.cellForItem(at: indexPath) as? HistoryCollectionViewCell {
       presenter?.historyCellTapped(cell: cell, text: history[indexPath.row])
+    } else if let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell{
+      let detailView = ModuleBuilder.createDetail()
+      detailView.presenter?.album = albums?[indexPath.row]
+      detailView.presenter?.image = cell.imageView.image
+      navigationController?.pushViewController(detailView, animated: true)
     }
   }
 

@@ -9,6 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="iTunesAPI" customModuleProvider="target">
             <connections>
+                <outlet property="spinner" destination="d7m-I0-tCS" id="0XZ-F1-Wht"/>
+                <outlet property="tableView" destination="egV-h4-wDc" id="DXL-DP-v1F"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +18,28 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="egV-h4-wDc">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="AfP-h8-HiS"/>
+                        <outlet property="delegate" destination="-1" id="LKM-Mc-bVX"/>
+                    </connections>
+                </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="d7m-I0-tCS">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="egV-h4-wDc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4aS-6E-Mao"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="egV-h4-wDc" secondAttribute="trailing" id="G6N-P6-76m"/>
+                <constraint firstItem="d7m-I0-tCS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lpR-aj-Yo1"/>
+                <constraint firstItem="egV-h4-wDc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tiR-cE-Enf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="egV-h4-wDc" secondAttribute="bottom" id="y5W-5c-sRF"/>
+                <constraint firstItem="d7m-I0-tCS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="z1v-Cm-oMy"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="107" y="120"/>
         </view>

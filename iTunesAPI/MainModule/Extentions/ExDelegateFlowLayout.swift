@@ -31,4 +31,3 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
       return CGSize.zero
   }
 }
-

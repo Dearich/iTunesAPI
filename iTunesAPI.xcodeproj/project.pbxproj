@@ -24,6 +24,8 @@
 		157B58892500E958007F4B3F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157B58872500E958007F4B3F /* DetailViewController.xib */; };
 		157B588D2500EFAF007F4B3F /* ExDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B588C2500EFAF007F4B3F /* ExDelegate.swift */; };
 		157B588F2500EFCB007F4B3F /* ExDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */; };
+		157B58912500F92B007F4B3F /* ExSearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B58902500F92B007F4B3F /* ExSearchBarDelegate.swift */; };
+		157B589325010898007F4B3F /* Songs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B589225010898007F4B3F /* Songs.swift */; };
 		159DD49024FEABD800537554 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD48F24FEABD800537554 /* ImageService.swift */; };
 		159DD49224FEB1E900537554 /* MainCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49124FEB1E900537554 /* MainCellPresenter.swift */; };
 		159DD49524FEB5E100537554 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49424FEB5E100537554 /* PresenterProtocol.swift */; };
@@ -70,6 +72,8 @@
 		157B58872500E958007F4B3F /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		157B588C2500EFAF007F4B3F /* ExDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDelegate.swift; sourceTree = "<group>"; };
 		157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDelegateFlowLayout.swift; sourceTree = "<group>"; };
+		157B58902500F92B007F4B3F /* ExSearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExSearchBarDelegate.swift; sourceTree = "<group>"; };
+		157B589225010898007F4B3F /* Songs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Songs.swift; sourceTree = "<group>"; };
 		159DD48F24FEABD800537554 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		159DD49124FEB1E900537554 /* MainCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellPresenter.swift; sourceTree = "<group>"; };
 		159DD49424FEB5E100537554 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				159DD49824FEB70800537554 /* ExDataSource.swift */,
 				157B588C2500EFAF007F4B3F /* ExDelegate.swift */,
 				157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */,
+				157B58902500F92B007F4B3F /* ExSearchBarDelegate.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 			children = (
 				15AF51BA24FE81B500DA6422 /* Artist.swift */,
 				15F7DAE124FE5DAE00486325 /* Album.swift */,
+				157B589225010898007F4B3F /* Songs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -421,6 +427,8 @@
 				155CDE3B24FE31D700919C82 /* SceneDelegate.swift in Sources */,
 				159DD49D24FEE83900537554 /* HistoryCollectionViewCell.swift in Sources */,
 				15F7DAE224FE5DAE00486325 /* Album.swift in Sources */,
+				157B589325010898007F4B3F /* Songs.swift in Sources */,
+				157B58912500F92B007F4B3F /* ExSearchBarDelegate.swift in Sources */,
 				155CDE6224FE359300919C82 /* ModuleBuilder.swift in Sources */,
 				159DD49924FEB70800537554 /* ExDataSource.swift in Sources */,
 				157B588D2500EFAF007F4B3F /* ExDelegate.swift in Sources */,

@@ -24,19 +24,19 @@ class MainPresenter: PresenterProtocol {
     mainView.loadingLabel.isHidden = false
     let backgroundQueue = DispatchQueue(label: "ru.azizbek.fetchAlbum", qos: .userInitiated, attributes: .concurrent)
     backgroundQueue.async {
-      NetworkLayer.shared.getAlbums(searchText.lowercased()) { [weak self] (result) in
+      NetworkLayer.shared.getAlbums(searchText.lowercased()) { (result) in
         DispatchQueue.main.async {
           switch result {
 
           case .success(let artist):
             if artist.albums.isEmpty {
-              self?.setAlert(title: "Empty response", message: "try to find something else")
+              mainView.setAlert(title: "Empty response", message: "try to find something else")
             } else {
               complition(artist.albums)
             }
           case .failure(let error):
             print(error.localizedDescription)
-            self?.setAlert(title: "Error", message: error.localizedDescription)
+            mainView.setAlert(title: "Error", message: error.localizedDescription)
           }
           mainView.spinner.isHidden = true
           mainView.spinner.stopAnimating()
@@ -59,19 +59,20 @@ class MainPresenter: PresenterProtocol {
     let nib3 = UINib(nibName: "HistoryHeader", bundle: nil)
     view.collectionView.register(nib3, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: historyHeader)
   }
+
   func historyCellTapped(cell: UICollectionViewCell, text: String) {
     UIView.animate(withDuration: 0.5) {
-           cell.contentView.backgroundColor = .systemGray6
-           cell.contentView.backgroundColor = .clear
-         }
+      cell.contentView.backgroundColor = .systemGray6
+      cell.contentView.backgroundColor = .clear
+    }
     view?.seachBar.becomeFirstResponder()
     view?.seachBar.searchBar.searchTextField.becomeFirstResponder()
     view?.seachBar.searchBar.searchTextField.text = text
   }
 }
 
-extension MainPresenter {
-  private func setAlert(title: String, message: String) {
+extension UIViewController {
+   func setAlert(title: String, message: String) {
 
     let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .default)

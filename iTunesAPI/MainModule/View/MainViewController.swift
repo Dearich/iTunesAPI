@@ -41,30 +41,12 @@ class MainViewController: UIViewController, ViewProtocol {
     seachBar.obscuresBackgroundDuringPresentation = false
     seachBar.searchBar.placeholder = "Artists, albums"
     navigationItem.searchController = seachBar
-    navigationController?.navigationBar.prefersLargeTitles = true
     navigationItem.hidesSearchBarWhenScrolling = false
     definesPresentationContext = true
     seachBar.searchBar.delegate = self
-    
   }
-}
-
-extension MainViewController: UISearchResultsUpdating, UISearchBarDelegate {
-  func updateSearchResults(for searchController: UISearchController) {
-  }
-  
-  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-    guard let request = searchBar.text else { return }
-    presenter?.getAlbums(request, complition: { [weak self] (albums) in
-      self?.albums = albums
-      self?.history.append(request)
-    })
-  }
-  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    albums?.removeAll()
-  }
-  func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-    albums?.removeAll()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.navigationBar.prefersLargeTitles = true
   }
 }
