@@ -19,11 +19,16 @@
 		155CDE6524FE35FC00919C82 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CDE6424FE35FC00919C82 /* MainPresenter.swift */; };
 		155CDE6A24FE505800919C82 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CDE6824FE505800919C82 /* MainCollectionViewCell.swift */; };
 		155CDE6B24FE505800919C82 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 155CDE6924FE505800919C82 /* MainCollectionViewCell.xib */; };
+		157B58852500E92F007F4B3F /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B58842500E92F007F4B3F /* DetailPresenter.swift */; };
+		157B58882500E958007F4B3F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B58862500E958007F4B3F /* DetailViewController.swift */; };
+		157B58892500E958007F4B3F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157B58872500E958007F4B3F /* DetailViewController.xib */; };
+		157B588D2500EFAF007F4B3F /* ExDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B588C2500EFAF007F4B3F /* ExDelegate.swift */; };
+		157B588F2500EFCB007F4B3F /* ExDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */; };
 		159DD49024FEABD800537554 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD48F24FEABD800537554 /* ImageService.swift */; };
 		159DD49224FEB1E900537554 /* MainCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49124FEB1E900537554 /* MainCellPresenter.swift */; };
 		159DD49524FEB5E100537554 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49424FEB5E100537554 /* PresenterProtocol.swift */; };
 		159DD49724FEB5FB00537554 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49624FEB5FB00537554 /* ViewProtocol.swift */; };
-		159DD49924FEB70800537554 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49824FEB70800537554 /* CollectionViewDataSource.swift */; };
+		159DD49924FEB70800537554 /* ExDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49824FEB70800537554 /* ExDataSource.swift */; };
 		159DD49D24FEE83900537554 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49B24FEE83900537554 /* HistoryCollectionViewCell.swift */; };
 		159DD49E24FEE83900537554 /* HistoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 159DD49C24FEE83900537554 /* HistoryCollectionViewCell.xib */; };
 		159DD4A124FEF05D00537554 /* HistoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159DD49F24FEF05D00537554 /* HistoryHeader.swift */; };
@@ -60,11 +65,16 @@
 		155CDE6424FE35FC00919C82 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		155CDE6824FE505800919C82 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		155CDE6924FE505800919C82 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
+		157B58842500E92F007F4B3F /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
+		157B58862500E958007F4B3F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		157B58872500E958007F4B3F /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		157B588C2500EFAF007F4B3F /* ExDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDelegate.swift; sourceTree = "<group>"; };
+		157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDelegateFlowLayout.swift; sourceTree = "<group>"; };
 		159DD48F24FEABD800537554 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		159DD49124FEB1E900537554 /* MainCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellPresenter.swift; sourceTree = "<group>"; };
 		159DD49424FEB5E100537554 /* PresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
 		159DD49624FEB5FB00537554 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
-		159DD49824FEB70800537554 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		159DD49824FEB70800537554 /* ExDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDataSource.swift; sourceTree = "<group>"; };
 		159DD49B24FEE83900537554 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		159DD49C24FEE83900537554 /* HistoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		159DD49F24FEF05D00537554 /* HistoryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHeader.swift; sourceTree = "<group>"; };
@@ -128,6 +138,7 @@
 				155CDE5B24FE353000919C82 /* MainModule */,
 				155CDE6724FE502400919C82 /* CollectionViewCellModule */,
 				159DD49A24FEE7EE00537554 /* HistoryCell */,
+				157B58832500E90C007F4B3F /* DetailModule */,
 				1554505225003BC2005CB778 /* Services */,
 				159DD49324FEB5C200537554 /* Protocols */,
 				155CDE5A24FE322800919C82 /* Supporting Files */,
@@ -159,6 +170,7 @@
 		155CDE5B24FE353000919C82 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
+				157B588B2500EF94007F4B3F /* Extentions */,
 				155CDE6324FE35ED00919C82 /* Presenter */,
 				155CDE5C24FE354300919C82 /* View */,
 			);
@@ -170,7 +182,6 @@
 			children = (
 				155CDE5D24FE356900919C82 /* MainViewController.swift */,
 				155CDE5E24FE356900919C82 /* MainViewController.xib */,
-				159DD49824FEB70800537554 /* CollectionViewDataSource.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -191,6 +202,34 @@
 				159DD49124FEB1E900537554 /* MainCellPresenter.swift */,
 			);
 			path = CollectionViewCellModule;
+			sourceTree = "<group>";
+		};
+		157B58832500E90C007F4B3F /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				157B58842500E92F007F4B3F /* DetailPresenter.swift */,
+				157B588A2500E962007F4B3F /* View */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
+		157B588A2500E962007F4B3F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				157B58862500E958007F4B3F /* DetailViewController.swift */,
+				157B58872500E958007F4B3F /* DetailViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		157B588B2500EF94007F4B3F /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				159DD49824FEB70800537554 /* ExDataSource.swift */,
+				157B588C2500EFAF007F4B3F /* ExDelegate.swift */,
+				157B588E2500EFCB007F4B3F /* ExDelegateFlowLayout.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		159DD48E24FEABB100537554 /* ImageService */ = {
@@ -322,6 +361,7 @@
 			files = (
 				159DD49E24FEE83900537554 /* HistoryCollectionViewCell.xib in Resources */,
 				155CDE4524FE31DD00919C82 /* LaunchScreen.storyboard in Resources */,
+				157B58892500E958007F4B3F /* DetailViewController.xib in Resources */,
 				155CDE6024FE356900919C82 /* MainViewController.xib in Resources */,
 				155CDE4224FE31DD00919C82 /* Assets.xcassets in Resources */,
 				155CDE6B24FE505800919C82 /* MainCollectionViewCell.xib in Resources */,
@@ -368,18 +408,22 @@
 				159DD49224FEB1E900537554 /* MainCellPresenter.swift in Sources */,
 				155CDE6A24FE505800919C82 /* MainCollectionViewCell.swift in Sources */,
 				159DD49724FEB5FB00537554 /* ViewProtocol.swift in Sources */,
+				157B588F2500EFCB007F4B3F /* ExDelegateFlowLayout.swift in Sources */,
 				1554505425003BEF005CB778 /* CheckInternet.swift in Sources */,
 				159DD49024FEABD800537554 /* ImageService.swift in Sources */,
 				15AF51BB24FE81B500DA6422 /* Artist.swift in Sources */,
 				155CDE5F24FE356900919C82 /* MainViewController.swift in Sources */,
 				155CDE3924FE31D700919C82 /* AppDelegate.swift in Sources */,
+				157B58882500E958007F4B3F /* DetailViewController.swift in Sources */,
 				159DD4A124FEF05D00537554 /* HistoryHeader.swift in Sources */,
+				157B58852500E92F007F4B3F /* DetailPresenter.swift in Sources */,
 				159DD49524FEB5E100537554 /* PresenterProtocol.swift in Sources */,
 				155CDE3B24FE31D700919C82 /* SceneDelegate.swift in Sources */,
 				159DD49D24FEE83900537554 /* HistoryCollectionViewCell.swift in Sources */,
 				15F7DAE224FE5DAE00486325 /* Album.swift in Sources */,
 				155CDE6224FE359300919C82 /* ModuleBuilder.swift in Sources */,
-				159DD49924FEB70800537554 /* CollectionViewDataSource.swift in Sources */,
+				159DD49924FEB70800537554 /* ExDataSource.swift in Sources */,
+				157B588D2500EFAF007F4B3F /* ExDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

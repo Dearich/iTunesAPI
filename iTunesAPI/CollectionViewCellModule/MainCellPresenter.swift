@@ -11,7 +11,11 @@ import UIKit
 class MainCellPresenter {
   
   weak var view: MainCollectionViewCell?
-  var album: Album?
+  var album: Album? {
+    didSet {
+      setupCell()
+    }
+  }
   
   required init(view: MainCollectionViewCell) {
     self.view = view

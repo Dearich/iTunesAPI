@@ -18,4 +18,11 @@ class ModuleBuilder: Builder {
     view.presenter = presenter
     return view
   }
+
+  static func createDetail() -> DetailViewController {
+    let view = DetailViewController()
+    let presenter = DetailPresenter(view: view)
+    view.presenter = presenter
+    return view
+  }
 }

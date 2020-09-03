@@ -6,10 +6,12 @@
 //  Copyright © 2020 Azizbek Ismailov. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
 protocol PresenterProtocol: class {
   var view: ViewProtocol? { get }
   init(view: ViewProtocol)
   func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void)
   func setupCollectionView()
+  func historyCellTapped(cell: UICollectionViewCell, text: String)
 }

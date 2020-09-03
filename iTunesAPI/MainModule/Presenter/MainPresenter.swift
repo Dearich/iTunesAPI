@@ -59,6 +59,15 @@ class MainPresenter: PresenterProtocol {
     let nib3 = UINib(nibName: "HistoryHeader", bundle: nil)
     view.collectionView.register(nib3, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: historyHeader)
   }
+  func historyCellTapped(cell: UICollectionViewCell, text: String) {
+    UIView.animate(withDuration: 0.5) {
+           cell.contentView.backgroundColor = .systemGray6
+           cell.contentView.backgroundColor = .clear
+         }
+    view?.seachBar.becomeFirstResponder()
+    view?.seachBar.searchBar.searchTextField.becomeFirstResponder()
+    view?.seachBar.searchBar.searchTextField.text = text
+  }
 }
 
 extension MainPresenter {
