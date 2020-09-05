@@ -21,14 +21,14 @@ class MainCellPresenter {
     self.view = view
   }
   
-  func getAlbumImage(with complition: @escaping (Result<UIImage,Error>) -> Void) {
+  func getAlbumImage(with completion: @escaping (Result<UIImage,Error>) -> Void) {
     guard let urlString = album?.imageUrl,
       let url = URL(string: urlString) else { return }
     ImageService.getImageFromCashe(withURL: url) { (image, error) in
       if let image = image {
-        complition(.success(image))
+        completion(.success(image))
       } else if let error = error {
-        complition(.failure(error))
+        completion(.failure(error))
       }
     }
   }
@@ -38,7 +38,8 @@ class MainCellPresenter {
       let imageView = view?.imageView, let urlString = album.imageUrl else { return }
     view?.albumNameLabel.text = album.albumName
     view?.songsCounterLabel.text = album.artist
-    view?.yearLabel.text = album.releaseDate
+    let date = album.releaseDate?.components(separatedBy: "-")
+    view?.yearLabel.text = date?[0]
     imageView.image = UIImage(named: "music-placeholder")
     
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "DownloadImage"),

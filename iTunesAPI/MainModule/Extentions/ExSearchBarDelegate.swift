@@ -15,7 +15,7 @@ extension MainViewController: UISearchResultsUpdating, UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     guard let request = searchBar.text else { return }
-    presenter?.getAlbums(request, complition: { [weak self] (albums) in
+    presenter?.getAlbums(request, completion: { [weak self] (albums) in
       self?.albums = albums
       self?.history.append(request)
     })

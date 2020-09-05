@@ -47,16 +47,15 @@ class NetworkLayer {
     task.resume()
   }
 
-  func getSongs(with id: Int, complition: @escaping (Result<[Song],Error>) -> Void) {
+  func getSongs(with id: Int, completion: @escaping (Result<[Song],Error>) -> Void) {
     guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(id)&entity=song") else { return }
-    let task = URLSession.shared.dataTask(with: url) { [weak self] (data, _, error) in
+    let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
       var songsResults = [Song]()
       if let data = data {
         do {
           guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return }
           if let jsonResults = json["results"] as? [AnyObject] {
-            for item in jsonResults {
-              if item["wrapperType"] as? String == "track" {
+            for item in jsonResults where item["wrapperType"] as? String == "track" {
                 let song = Song()
                 song.artistName = item["artistName"] as? String ?? "nil"
                 song.previewURL = item["previewUrl"] as? String ?? "nil"
@@ -64,17 +63,16 @@ class NetworkLayer {
                 song.trackName = item["trackName"] as? String ?? "nil"
                 song.trackTimeMillis = item["trackTimeMillis"] as? Int ?? 00
                 songsResults.append(song)
-              }
             }
           }
-          complition(.success(songsResults))
+          completion(.success(songsResults))
         } catch let error {
           print("JSON error:\(error.localizedDescription)")
-          complition(.failure(error))
+          completion(.failure(error))
         }
       } else {
         print("error:\(String(describing: error?.localizedDescription))")
-        complition(.failure(error!))
+        completion(.failure(error!))
       }
     }
     task.resume()

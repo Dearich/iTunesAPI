@@ -17,7 +17,7 @@ class MainPresenter: PresenterProtocol {
     self.view = view
   }
 
-  func getAlbums(_ searchText: String, complition: @escaping ([Album]) -> Void) {
+  func getAlbums(_ searchText: String, completion: @escaping ([Album]) -> Void) {
     guard let mainView = view as? MainViewController else { return }
     mainView.spinner.isHidden = false
     mainView.spinner.startAnimating()
@@ -32,7 +32,7 @@ class MainPresenter: PresenterProtocol {
             if artist.albums.isEmpty {
               mainView.setAlert(title: "Empty response", message: "try to find something else")
             } else {
-              complition(artist.albums)
+              completion(artist.albums)
             }
           case .failure(let error):
             print(error.localizedDescription)
@@ -73,12 +73,9 @@ class MainPresenter: PresenterProtocol {
 
 extension UIViewController {
    func setAlert(title: String, message: String) {
-
     let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .default)
     alert.addAction(action)
-    guard let view  = view as? MainViewController else { return }
-    view.present(alert, animated: true)
-
+    present(alert, animated: true)
   }
 }

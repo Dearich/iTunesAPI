@@ -15,6 +15,8 @@ struct Album: Decodable {
   let imageUrl: String?
   let trackCount: Int?
   let releaseDate: String?
+  let primaryGenreName: String?
+  let copyright: String?
   
   private enum CodingKeys: String, CodingKey {
     case artist = "artistName"
@@ -23,6 +25,8 @@ struct Album: Decodable {
     case imageUrl = "artworkUrl100"
     case trackCount
     case releaseDate
+    case primaryGenreName
+    case copyright
   }
   
   init(from decoder: Decoder) throws {
@@ -33,5 +37,7 @@ struct Album: Decodable {
     imageUrl = try container.decode(String.self, forKey: .imageUrl)
     trackCount = try container.decode(Int.self, forKey: .trackCount)
     releaseDate = try container.decode(String.self, forKey: .releaseDate)
+    primaryGenreName = try container.decode(String.self, forKey: .primaryGenreName)
+    copyright = try container.decode(String.self, forKey: .copyright)
   }
 }
