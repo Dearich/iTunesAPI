@@ -11,12 +11,12 @@ import UIKit
 extension MainViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-     if !isSearchBarEmpty {
-       return albums?.count ?? history.count
-     } else {
-       return history.count
-     }
-   }
+    if !isSearchBarEmpty {
+      return albums?.count ?? history.count
+    } else {
+      return history.count
+    }
+  }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if let isEmpty = albums?.isEmpty, isEmpty {
@@ -24,7 +24,7 @@ extension MainViewController: UICollectionViewDataSource {
       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: historyId,
                                                           for: indexPath) as? HistoryCollectionViewCell
         else { return UICollectionViewCell() }
-      cell.artistLabel.text = history[indexPath.row]
+      cell.artistLabel.text = history[indexPath.row].name
       return cell
 
     } else {
@@ -63,11 +63,15 @@ extension MainViewController: UICollectionViewDataSource {
   }
 
   @objc func clearHistory() {
-    //TODO Core Data remove all
+
     let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     let alertAction = UIAlertAction(title: "Clear Recent Searches", style: .destructive) { [weak self] (_) in
-      self?.history.removeAll()
-      self?.collectionView.reloadData()
+      guard let self = self else { return }
+      for recent in self.history {
+        CoreDataService.shared.delete(resent: recent)
+      }
+      self.history.removeAll()
+      self.collectionView.reloadData()
     }
     let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 

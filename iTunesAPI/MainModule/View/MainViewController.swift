@@ -20,15 +20,12 @@ class MainViewController: UIViewController, ViewProtocol {
       collectionView.reloadData()
     }
   }
-  var history = [String]()
+  var history = [Recent]()
   
   var isSearchBarEmpty: Bool {
     return seachBar.searchBar.text?.isEmpty ?? true
   }
   
-  //  var isSearching: Bool {
-  //    return seachBar.isActive && !isSearchBarEmpty
-  //  }
   var presenter: PresenterProtocol?
   
   override func viewDidLoad() {
@@ -37,6 +34,7 @@ class MainViewController: UIViewController, ViewProtocol {
     spinner.isHidden = true
     loadingLabel.isHidden = true
     presenter?.setupCollectionView()
+    setupRecent()
     seachBar.searchResultsUpdater = self
     seachBar.obscuresBackgroundDuringPresentation = false
     seachBar.searchBar.placeholder = "Artists, albums"
@@ -48,5 +46,13 @@ class MainViewController: UIViewController, ViewProtocol {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.navigationBar.prefersLargeTitles = true
+  }
+  
+  func setupRecent() {
+    if CoreDataService.shared.entityIsEmpty() {
+      history = [Recent]()
+    } else {
+      history = CoreDataService.shared.fetch()
+    }
   }
 }

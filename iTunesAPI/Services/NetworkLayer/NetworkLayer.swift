@@ -9,7 +9,7 @@
 import UIKit
 
 class NetworkLayer {
-
+  
   static let shared = NetworkLayer()
   private let jsonDecoder = JSONDecoder()
   
@@ -46,7 +46,7 @@ class NetworkLayer {
     }
     task.resume()
   }
-
+  
   func getSongs(with id: Int, completion: @escaping (Result<[Song],Error>) -> Void) {
     guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(id)&entity=song") else { return }
     let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
@@ -56,13 +56,13 @@ class NetworkLayer {
           guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] else { return }
           if let jsonResults = json["results"] as? [AnyObject] {
             for item in jsonResults where item["wrapperType"] as? String == "track" {
-                let song = Song()
-                song.artistName = item["artistName"] as? String ?? "nil"
-                song.previewURL = item["previewUrl"] as? String ?? "nil"
-                song.primaryGenreName = item["primaryGenreName"] as? String ?? "nil"
-                song.trackName = item["trackName"] as? String ?? "nil"
-                song.trackTimeMillis = item["trackTimeMillis"] as? Int ?? 00
-                songsResults.append(song)
+              let song = Song()
+              song.artistName = item["artistName"] as? String ?? "nil"
+              song.previewURL = item["previewUrl"] as? String ?? "nil"
+              song.primaryGenreName = item["primaryGenreName"] as? String ?? "nil"
+              song.trackName = item["trackName"] as? String ?? "nil"
+              song.trackTimeMillis = item["trackTimeMillis"] as? Int ?? 00
+              songsResults.append(song)
             }
           }
           completion(.success(songsResults))

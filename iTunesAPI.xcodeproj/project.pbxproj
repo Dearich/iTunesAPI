@@ -21,6 +21,8 @@
 		155CDE6B24FE505800919C82 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 155CDE6924FE505800919C82 /* MainCollectionViewCell.xib */; };
 		1569858525017C2400722CE4 /* ExDetailTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1569858425017C2400722CE4 /* ExDetailTableViewDelegate.swift */; };
 		1569858725017C8800722CE4 /* ExDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1569858625017C8800722CE4 /* ExDetailDataSource.swift */; };
+		157A4C59250531360077161C /* RecentModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 157A4C57250531360077161C /* RecentModel.xcdatamodeld */; };
+		157A4C5C250531710077161C /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157A4C5B250531710077161C /* CoreDataService.swift */; };
 		157B58852500E92F007F4B3F /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B58842500E92F007F4B3F /* DetailPresenter.swift */; };
 		157B58882500E958007F4B3F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157B58862500E958007F4B3F /* DetailViewController.swift */; };
 		157B58892500E958007F4B3F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 157B58872500E958007F4B3F /* DetailViewController.xib */; };
@@ -73,6 +75,8 @@
 		155CDE6924FE505800919C82 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 		1569858425017C2400722CE4 /* ExDetailTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDetailTableViewDelegate.swift; sourceTree = "<group>"; };
 		1569858625017C8800722CE4 /* ExDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExDetailDataSource.swift; sourceTree = "<group>"; };
+		157A4C58250531360077161C /* ResentModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ResentModel.xcdatamodel; sourceTree = "<group>"; };
+		157A4C5B250531710077161C /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		157B58842500E92F007F4B3F /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		157B58862500E958007F4B3F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		157B58872500E958007F4B3F /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 		1554505225003BC2005CB778 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				15EDD11D25027F9B00D9C3A0 /* CachingPlayerItem */,
+				157A4C5A2505315E0077161C /* CoreDataService */,
 				159DD48E24FEABB100537554 /* ImageService */,
 				15AF51B724FE7D3200DA6422 /* NetworkLayer */,
 				1554505325003BEF005CB778 /* CheckInternet.swift */,
@@ -179,6 +183,7 @@
 				155CDE4124FE31DD00919C82 /* Assets.xcassets */,
 				155CDE4624FE31DD00919C82 /* Info.plist */,
 				155CDE4324FE31DD00919C82 /* LaunchScreen.storyboard */,
+				157A4C57250531360077161C /* RecentModel.xcdatamodeld */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -229,10 +234,26 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
-		157B58832500E90C007F4B3F /* DetailModule */ = {
+		157A4C5A2505315E0077161C /* CoreDataService */ = {
+			isa = PBXGroup;
+			children = (
+				157A4C5B250531710077161C /* CoreDataService.swift */,
+			);
+			path = CoreDataService;
+			sourceTree = "<group>";
+		};
+		157A4C5D25053BD70077161C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				157B58842500E92F007F4B3F /* DetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		157B58832500E90C007F4B3F /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				157A4C5D25053BD70077161C /* Presenter */,
 				157B588A2500E962007F4B3F /* View */,
 				1569858325017B6E00722CE4 /* Extentions */,
 			);
@@ -301,13 +322,6 @@
 				15AF51B824FE7D6900DA6422 /* NetworkLayer.swift */,
 			);
 			path = NetworkLayer;
-			sourceTree = "<group>";
-		};
-		15EDD11D25027F9B00D9C3A0 /* CachingPlayerItem */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CachingPlayerItem;
 			sourceTree = "<group>";
 		};
 		15F7DAE024FE5D9200486325 /* Model */ = {
@@ -446,6 +460,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157A4C5C250531710077161C /* CoreDataService.swift in Sources */,
 				15AF51B924FE7D6900DA6422 /* NetworkLayer.swift in Sources */,
 				155CDE6524FE35FC00919C82 /* MainPresenter.swift in Sources */,
 				159DD49224FEB1E900537554 /* MainCellPresenter.swift in Sources */,
@@ -461,6 +476,7 @@
 				155CDE3924FE31D700919C82 /* AppDelegate.swift in Sources */,
 				157B58882500E958007F4B3F /* DetailViewController.swift in Sources */,
 				159DD4A124FEF05D00537554 /* HistoryHeader.swift in Sources */,
+				157A4C59250531360077161C /* RecentModel.xcdatamodeld in Sources */,
 				157B58852500E92F007F4B3F /* DetailPresenter.swift in Sources */,
 				159DD49524FEB5E100537554 /* PresenterProtocol.swift in Sources */,
 				155CDE3B24FE31D700919C82 /* SceneDelegate.swift in Sources */,
@@ -730,6 +746,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		157A4C57250531360077161C /* RecentModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				157A4C58250531360077161C /* ResentModel.xcdatamodel */,
+			);
+			currentVersion = 157A4C58250531360077161C /* ResentModel.xcdatamodel */;
+			path = RecentModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 155CDE2D24FE31D600919C82 /* Project object */;
 }

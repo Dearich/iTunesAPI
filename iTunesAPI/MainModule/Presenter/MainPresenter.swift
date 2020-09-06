@@ -18,33 +18,41 @@ class MainPresenter: PresenterProtocol {
   }
 
   func getAlbums(_ searchText: String, completion: @escaping ([Album]) -> Void) {
+    
     guard let mainView = view as? MainViewController else { return }
     mainView.spinner.isHidden = false
     mainView.spinner.startAnimating()
     mainView.loadingLabel.isHidden = false
-    let backgroundQueue = DispatchQueue(label: "ru.azizbek.fetchAlbum", qos: .userInitiated, attributes: .concurrent)
-    backgroundQueue.async {
-      NetworkLayer.shared.getAlbums(searchText.lowercased()) { (result) in
-        DispatchQueue.main.async {
-          switch result {
+    CheckInternet.shared.checkInternetConnection(completion: { [weak self] (bool) in
+      guard let self = self else { return }
+      if bool {
+        let backgroundQueue = DispatchQueue(label: "ru.azizbek.fetchAlbum", qos: .userInitiated, attributes: .concurrent)
+        backgroundQueue.async {
+          NetworkLayer.shared.getAlbums(searchText.lowercased()) { (result) in
+            DispatchQueue.main.async {
+              switch result {
+              case .success(let artist):
+                if artist.albums.isEmpty {
+                  mainView.setAlert(title: "Empty response", message: "try to find something else")
+                } else {
+                  completion(artist.albums)
+                }
+              case .failure(let error):
+                print(error.localizedDescription)
+                mainView.setAlert(title: "Error", message: error.localizedDescription)
+              }
+              mainView.spinner.isHidden = true
+              mainView.spinner.stopAnimating()
+              mainView.loadingLabel.isHidden = true
 
-          case .success(let artist):
-            if artist.albums.isEmpty {
-              mainView.setAlert(title: "Empty response", message: "try to find something else")
-            } else {
-              completion(artist.albums)
             }
-          case .failure(let error):
-            print(error.localizedDescription)
-            mainView.setAlert(title: "Error", message: error.localizedDescription)
           }
-          mainView.spinner.isHidden = true
-          mainView.spinner.stopAnimating()
-          mainView.loadingLabel.isHidden = true
-
         }
+      } else {
+        guard let view = self.view as?  MainViewController else { return }
+        view.setupAlert(title: "Lost Connection", message: "Check your internet connection", complition: nil)
       }
-    }
+    })
   }
 
   func setupCollectionView() {
@@ -72,7 +80,7 @@ class MainPresenter: PresenterProtocol {
 }
 
 extension UIViewController {
-   func setAlert(title: String, message: String) {
+  func setAlert(title: String, message: String) {
     let alert = UIAlertController(title:title, message: message, preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .default)
     alert.addAction(action)

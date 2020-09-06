@@ -83,18 +83,28 @@ extension DetailViewController: UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard let url = presenter?.songs?[indexPath.row].previewURL else { return }
-    
-//    presenter?.playSelectedItem(with: url, indexPath: indexPath.row)
-//    let player = AVPlayer(url:URL(string: url)!) // url can be remote or local
-//
-//    let playerViewController = AVPlayerViewController()
-//    // creating a player view controller
-//    playerViewController.player = player
-//    self.present(playerViewController, animated: true) {
-//
-//        playerViewController.player!.play()
-//    }
+    musicDownloadSpinner.startAnimating()
+    playButton.isEnabled  = false
+    nextButton.isEnabled = false
+    isPlaying = true
+    presenter?.avHelper?.currentTrackIndex = indexPath.row
+    CheckInternet.shared.checkInternetConnection(completion: { [weak self] (bool) in
+      guard let self = self else { return }
+      if bool {
+        self.presenter?.avHelper?.queueTrack { [weak self] in
+          guard let self = self else { return }
+          self.presenter?.avHelper?.play()
+          self.presenter?.startTimer()
+          self.songNameLabel.text = self.presenter?.avHelper?.getCurrentTrackName()
+          self.smallImage.image = self.presenter?.image
+          self.musicDownloadSpinner.stopAnimating()
+          self.playButton.isEnabled = true
+          self.nextButton.isEnabled = true
+        }
+      } else {
+        self.setupAlert(title: "Lost Connection", message: "Check your internet connection", complition: nil)
+      }
+    })
 
   }
 }
