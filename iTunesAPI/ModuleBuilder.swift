@@ -8,22 +8,21 @@
 import UIKit
 
 protocol Builder {
-    static func createMain() -> UIViewController
-}
-
-protocol ViewProtocol: class {
-  var presenter: PresenterProtocol? { get }
-}
-protocol PresenterProtocol: class {
-  var view: ViewProtocol? { get }
-  init(view: ViewProtocol)
+  static func createMain() -> UIViewController
 }
 
 class ModuleBuilder: Builder {
-    static func createMain() -> UIViewController {
-        let view = MainViewController()
-        let presenter = MainPresenter(view: view)
-        view.presenter = presenter
-        return view
-    }
+  static func createMain() -> UIViewController {
+    let view = MainViewController()
+    let presenter = MainPresenter(view: view)
+    view.presenter = presenter
+    return view
+  }
+
+  static func createDetail() -> DetailViewController {
+    let view = DetailViewController()
+    let presenter = DetailPresenter(view: view)
+    view.presenter = presenter
+    return view
+  }
 }

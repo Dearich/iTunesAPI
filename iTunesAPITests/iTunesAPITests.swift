@@ -9,7 +9,7 @@
 import XCTest
 @testable import iTunesAPI
 
-class iTunesAPITests: XCTestCase {
+class ITunesAPITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
